@@ -3,6 +3,13 @@ import { motion } from 'framer-motion'
 import { Calendar, ChevronDown, MapPin } from 'lucide-react'
 import { invitationData } from '../data/invitationData'
 import { getGoogleCalendarUrl } from '../lib/calendar'
+import {
+  FluffyCloud,
+  KeepyUppyBalloon,
+  PartyBunting,
+  PawPrint,
+  SparkleStar,
+} from './BlueyDecorations'
 
 type TimeLeft = {
   days: number
@@ -42,6 +49,91 @@ export function HeroSection() {
 
   return (
     <section className="relative overflow-hidden px-4 pt-10 pb-16 text-center sm:px-6 sm:pt-14 sm:pb-20" id="welcome">
+      {/* Background Floating Clouds */}
+      <motion.div
+        className="pointer-events-none absolute -top-4 left-[-10%] w-48 opacity-40 sm:left-4 sm:w-64"
+        animate={{ x: [0, 20, 0] }}
+        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+      >
+        <FluffyCloud className="w-full" />
+      </motion.div>
+
+      <motion.div
+        className="pointer-events-none absolute top-12 right-[-10%] w-44 opacity-40 sm:right-6 sm:w-56"
+        animate={{ x: [0, -20, 0] }}
+        transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+      >
+        <FluffyCloud className="w-full" />
+      </motion.div>
+
+      {/* Floating Balloons on Left & Right Sides */}
+      {/* Left Red Keepy Uppy Balloon */}
+      <motion.div
+        className="pointer-events-none absolute left-3 top-24 z-20 hidden md:block w-16 lg:left-12 lg:w-20"
+        animate={{
+          y: [-12, 12, -12],
+          rotate: [-4, 4, -4],
+        }}
+        transition={{
+          duration: 4.2,
+          repeat: Infinity,
+          ease: 'easeInOut',
+        }}
+      >
+        <KeepyUppyBalloon color="#FF4D6D" shineColor="#FFA8B8" className="w-full drop-shadow-md" />
+      </motion.div>
+
+      {/* Left Bluey Balloon */}
+      <motion.div
+        className="pointer-events-none absolute left-10 top-64 z-20 hidden md:block w-12 lg:left-24 lg:w-16"
+        animate={{
+          y: [10, -10, 10],
+          rotate: [3, -3, 3],
+        }}
+        transition={{
+          duration: 5,
+          repeat: Infinity,
+          ease: 'easeInOut',
+          delay: 0.5,
+        }}
+      >
+        <KeepyUppyBalloon color="#4D88E6" shineColor="#96BEFB" className="w-full drop-shadow-md" />
+      </motion.div>
+
+      {/* Right Bingo Orange Balloon */}
+      <motion.div
+        className="pointer-events-none absolute right-4 top-20 z-20 hidden md:block w-16 lg:right-12 lg:w-20"
+        animate={{
+          y: [12, -12, 12],
+          rotate: [4, -4, 4],
+        }}
+        transition={{
+          duration: 4.8,
+          repeat: Infinity,
+          ease: 'easeInOut',
+          delay: 0.8,
+        }}
+      >
+        <KeepyUppyBalloon color="#F58A3C" shineColor="#FFC89E" className="w-full drop-shadow-md" />
+      </motion.div>
+
+      {/* Right Yellow Balloon */}
+      <motion.div
+        className="pointer-events-none absolute right-12 top-60 z-20 hidden md:block w-12 lg:right-24 lg:w-16"
+        animate={{
+          y: [-10, 10, -10],
+          rotate: [-3, 3, -3],
+        }}
+        transition={{
+          duration: 5.2,
+          repeat: Infinity,
+          ease: 'easeInOut',
+          delay: 1.2,
+        }}
+      >
+        <KeepyUppyBalloon color="#FED766" shineColor="#FFF4D0" className="w-full drop-shadow-md" />
+      </motion.div>
+
       <motion.div
         className="relative mx-auto max-w-xl"
         initial={{ opacity: 0, y: 24 }}
@@ -49,14 +141,23 @@ export function HeroSection() {
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       >
         {/* Main Invitation Card */}
-        <div className="relative overflow-hidden rounded-[2.2rem] border border-[#DCE8FA] bg-white p-7 shadow-sm sm:p-10">
-          {/* Eyebrow */}
-          <p className="font-sub text-[0.72rem] font-bold uppercase tracking-[0.2em] text-[#4D88E6]">
-            Holy Baptism &amp; Dedication
-          </p>
+        <div className="relative overflow-hidden rounded-[2.4rem] border border-[#DCE8FA] bg-white p-6 pt-7 shadow-sm sm:p-10 sm:pt-9">
+          {/* Festive Top Bunting Garland */}
+          <div className="absolute top-0 inset-x-0 overflow-hidden pointer-events-none">
+            <PartyBunting className="w-full h-8 sm:h-10 opacity-90" />
+          </div>
+
+          {/* Eyebrow with Sparkles & Paw */}
+          <div className="mt-3 flex items-center justify-center gap-1.5">
+            <SparkleStar className="h-3 w-3 text-[#FED766]" />
+            <p className="font-sub text-[0.72rem] font-bold uppercase tracking-[0.2em] text-[#4D88E6]">
+              Holy Baptism &amp; Dedication
+            </p>
+            <SparkleStar className="h-3 w-3 text-[#FED766]" />
+          </div>
 
           {/* Child Name */}
-          <h1 className="mt-3 font-display text-[2.6rem] font-bold leading-tight text-[#192739] sm:text-[3.2rem]">
+          <h1 className="mt-2.5 font-display text-[2.6rem] font-bold leading-tight text-[#192739] sm:text-[3.2rem]">
             {baby.fullName}
           </h1>
 
@@ -65,9 +166,11 @@ export function HeroSection() {
             Beloved son of <strong className="font-semibold text-[#192739]">{baby.parents.display}</strong>
           </p>
 
-          {/* Clean hairline divider */}
-          <div className="my-6 clean-divider">
-            <span />
+          {/* Hairline divider with subtle paw prints */}
+          <div className="my-6 flex items-center justify-center gap-3">
+            <div className="h-[1px] w-12 bg-[#D4E3FA]" />
+            <PawPrint className="h-4 w-4" color="#4D88E6" />
+            <div className="h-[1px] w-12 bg-[#D4E3FA]" />
           </div>
 
           {/* Authentic Bluey Family Character Illustration */}

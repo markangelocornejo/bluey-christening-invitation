@@ -4,6 +4,12 @@ import { CheckCircle2, Send } from 'lucide-react'
 import confetti from 'canvas-confetti'
 import { invitationData } from '../data/invitationData'
 import { sound } from '../lib/sound'
+import {
+  BlueyCharacterSilhouette,
+  KeepyUppyBalloon,
+  PawPrint,
+  SparkleStar,
+} from './BlueyDecorations'
 
 export function RSVPSection() {
   const [submitted, setSubmitted] = useState(false)
@@ -44,7 +50,7 @@ export function RSVPSection() {
           particleCount: 50,
           spread: 60,
           origin: { y: 0.6 },
-          colors: ['#4D88E6', '#F58A3C', '#FBE8A6'],
+          colors: ['#4D88E6', '#F58A3C', '#FBE8A6', '#FF4D6D'],
         })
       } catch {
         // safe ignore
@@ -61,16 +67,59 @@ export function RSVPSection() {
 
   return (
     <section className="relative px-4 py-16 text-center sm:px-6 sm:py-20" id="rsvp">
+      {/* Floating Side Balloons */}
       <motion.div
-        className="relative mx-auto max-w-lg rounded-[2rem] border border-[#DCE8FA] bg-white p-6 sm:p-10 shadow-sm"
+        className="pointer-events-none absolute left-4 top-1/4 z-10 hidden lg:block w-16"
+        animate={{
+          y: [-10, 10, -10],
+          rotate: [-4, 4, -4],
+        }}
+        transition={{
+          duration: 4.5,
+          repeat: Infinity,
+          ease: 'easeInOut',
+        }}
+      >
+        <KeepyUppyBalloon color="#4D88E6" shineColor="#96BEFB" className="w-full drop-shadow-md" />
+      </motion.div>
+
+      <motion.div
+        className="pointer-events-none absolute right-4 top-1/3 z-10 hidden lg:block w-16"
+        animate={{
+          y: [10, -10, 10],
+          rotate: [4, -4, 4],
+        }}
+        transition={{
+          duration: 4.8,
+          repeat: Infinity,
+          ease: 'easeInOut',
+          delay: 0.5,
+        }}
+      >
+        <KeepyUppyBalloon color="#F58A3C" shineColor="#FFC89E" className="w-full drop-shadow-md" />
+      </motion.div>
+
+      <motion.div
+        className="relative mx-auto max-w-lg rounded-[2.4rem] border border-[#DCE8FA] bg-white p-6 pt-10 sm:p-10 shadow-sm"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.7 }}
       >
-        <p className="font-sub text-[0.72rem] font-bold uppercase tracking-[0.2em] text-[#4D88E6]">
-          {rsvp.eyebrow}
-        </p>
+        {/* Bluey & Bingo Silhouette Peeker */}
+        <div className="mx-auto -mt-16 mb-2 flex justify-center">
+          <div className="h-16 w-32 drop-shadow-sm">
+            <BlueyCharacterSilhouette className="w-full h-full" />
+          </div>
+        </div>
+
+        <div className="flex items-center justify-center gap-1.5">
+          <SparkleStar className="h-3 w-3 text-[#FED766]" />
+          <p className="font-sub text-[0.72rem] font-bold uppercase tracking-[0.2em] text-[#4D88E6]">
+            {rsvp.eyebrow}
+          </p>
+          <SparkleStar className="h-3 w-3 text-[#FED766]" />
+        </div>
 
         <h2 className="mt-2 font-display text-[2.2rem] sm:text-[2.6rem] font-bold text-[#192739]">
           {rsvp.title}
@@ -80,8 +129,10 @@ export function RSVPSection() {
           {rsvp.subtitle}
         </p>
 
-        <div className="my-5 clean-divider">
-          <span />
+        <div className="my-5 flex items-center justify-center gap-3">
+          <div className="h-[1px] w-10 bg-[#D4E3FA]" />
+          <PawPrint className="h-3.5 w-3.5" color="#F58A3C" />
+          <div className="h-[1px] w-10 bg-[#D4E3FA]" />
         </div>
 
         {rsvp.isClosed ? (

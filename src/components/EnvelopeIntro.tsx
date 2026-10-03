@@ -3,6 +3,13 @@ import { motion, useReducedMotion, type Variants } from 'framer-motion'
 import confetti from 'canvas-confetti'
 import { invitationData } from '../data/invitationData'
 import { sound } from '../lib/sound'
+import {
+  FluffyCloud,
+  KeepyUppyBalloon,
+  PartyBunting,
+  PawPrint,
+  SparkleStar,
+} from './BlueyDecorations'
 
 type EnvelopeIntroProps = {
   onReveal: () => void
@@ -82,10 +89,10 @@ export function EnvelopeIntro({ onReveal, onComplete }: EnvelopeIntroProps) {
     sound.playPop()
     try {
       confetti({
-        particleCount: 40,
-        spread: 60,
+        particleCount: 50,
+        spread: 70,
         origin: { y: 0.6 },
-        colors: ['#4D88E6', '#F58A3C', '#FBE8A6'],
+        colors: ['#4D88E6', '#F58A3C', '#FBE8A6', '#FF4D6D', '#A0D8B3'],
       })
     } catch {
       // safe ignore
@@ -102,6 +109,60 @@ export function EnvelopeIntro({ onReveal, onComplete }: EnvelopeIntroProps) {
       exit={{ opacity: 0 }}
       transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.7, ease }}
     >
+      {/* Top Party Bunting Garland */}
+      <div className="pointer-events-none absolute top-0 inset-x-0 overflow-hidden">
+        <PartyBunting className="w-full h-8 sm:h-12 opacity-80" />
+      </div>
+
+      {/* Floating Sky Clouds */}
+      <motion.div
+        className="pointer-events-none absolute top-10 left-[-5%] w-44 opacity-50 sm:left-6 sm:w-60"
+        animate={{ x: [0, 15, 0] }}
+        transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
+      >
+        <FluffyCloud className="w-full" />
+      </motion.div>
+
+      <motion.div
+        className="pointer-events-none absolute bottom-12 right-[-5%] w-48 opacity-50 sm:right-8 sm:w-64"
+        animate={{ x: [0, -15, 0] }}
+        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+      >
+        <FluffyCloud className="w-full" />
+      </motion.div>
+
+      {/* Floating Keepy Uppy Balloons */}
+      <motion.div
+        className="pointer-events-none absolute left-6 top-1/4 z-10 hidden sm:block w-16"
+        animate={{
+          y: [-12, 12, -12],
+          rotate: [-5, 5, -5],
+        }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          ease: 'easeInOut',
+        }}
+      >
+        <KeepyUppyBalloon color="#FF4D6D" shineColor="#FFA8B8" className="w-full drop-shadow-md" />
+      </motion.div>
+
+      <motion.div
+        className="pointer-events-none absolute right-6 top-1/3 z-10 hidden sm:block w-16"
+        animate={{
+          y: [10, -10, 10],
+          rotate: [4, -4, 4],
+        }}
+        transition={{
+          duration: 4.5,
+          repeat: Infinity,
+          ease: 'easeInOut',
+          delay: 0.6,
+        }}
+      >
+        <KeepyUppyBalloon color="#F58A3C" shineColor="#FFC89E" className="w-full drop-shadow-md" />
+      </motion.div>
+
       {/* Header text */}
       <motion.div
         className="relative z-10 mb-4"
@@ -109,16 +170,22 @@ export function EnvelopeIntro({ onReveal, onComplete }: EnvelopeIntroProps) {
         animate={animatedState}
         initial="resting"
       >
-        <p className="font-sub text-xs font-bold uppercase tracking-[0.2em] text-[#4D88E6]">
-          A Special Invitation For You
-        </p>
+        <div className="flex items-center justify-center gap-1.5">
+          <SparkleStar className="h-3.5 w-3.5 text-[#FED766]" />
+          <p className="font-sub text-xs font-bold uppercase tracking-[0.2em] text-[#4D88E6]">
+            A Special Invitation For You
+          </p>
+          <SparkleStar className="h-3.5 w-3.5 text-[#FED766]" />
+        </div>
 
         <h2 className="mt-2 font-display text-3xl font-bold leading-tight text-[#192739] sm:text-4xl">
           {invitationData.baby.fullName}
         </h2>
-        <p className="mt-1 font-body text-xs text-[#64748B]">
-          Holy Baptism &bull; {invitationData.displayDate}
-        </p>
+        <div className="mt-1 flex items-center justify-center gap-2 font-body text-xs text-[#64748B]">
+          <PawPrint className="h-3 w-3 text-[#7EADF8]" />
+          <span>Holy Baptism &bull; {invitationData.displayDate}</span>
+          <PawPrint className="h-3 w-3 text-[#F58A3C]" />
+        </div>
       </motion.div>
 
       {/* ─── Envelope Scene ─── */}

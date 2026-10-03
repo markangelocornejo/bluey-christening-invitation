@@ -46,6 +46,20 @@ export function PawPrint({ className = '', color = '#5B93E6' }: DecorationProps 
   )
 }
 
+export function SparkleStar({ className = '', color = '#FED766' }: DecorationProps & { color?: string }) {
+  return (
+    <svg
+      className={`pointer-events-none select-none ${className}`}
+      viewBox="0 0 24 24"
+      fill={color}
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" />
+    </svg>
+  )
+}
+
 export function KeepyUppyBalloon({
   className = '',
   color = '#FF4D6D',
@@ -62,11 +76,11 @@ export function KeepyUppyBalloon({
       {/* String */}
       <path
         d="M50 95 Q42 110 54 125 T48 148"
-        stroke="#FFFFFF"
-        strokeWidth="2.5"
+        stroke="#94A3B8"
+        strokeWidth="2"
         strokeLinecap="round"
         fill="none"
-        opacity="0.85"
+        opacity="0.6"
       />
       {/* Balloon Knot */}
       <polygon points="46,95 54,95 50,91" fill={color} />

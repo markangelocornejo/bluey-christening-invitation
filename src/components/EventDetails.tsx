@@ -1,6 +1,11 @@
 import { motion } from 'framer-motion'
 import { Clock, MapPin, Navigation } from 'lucide-react'
 import { invitationData } from '../data/invitationData'
+import {
+  ChurchChapelIllustration,
+  ReceptionPartyIllustration,
+  SparkleStar,
+} from './BlueyDecorations'
 
 export function EventDetails() {
   const { event } = invitationData
@@ -11,12 +16,14 @@ export function EventDetails() {
       badge: 'Ceremony',
       badgeClass: 'bg-[#EEF4FD] text-[#4D88E6]',
       btnClass: 'bluey-button',
+      illustration: <ChurchChapelIllustration className="h-28 w-auto mx-auto my-1" />,
     },
     {
       ...event.reception,
       badge: 'Reception',
       badgeClass: 'bg-[#FFF7EE] text-[#F58A3C]',
       btnClass: 'bingo-button',
+      illustration: <ReceptionPartyIllustration className="h-28 w-auto mx-auto my-1" />,
     },
   ]
 
@@ -29,9 +36,13 @@ export function EventDetails() {
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.7 }}
       >
-        <p className="font-sub text-[0.72rem] font-bold uppercase tracking-[0.2em] text-[#4D88E6]">
-          Where &amp; When
-        </p>
+        <div className="flex items-center justify-center gap-1.5">
+          <SparkleStar className="h-3 w-3 text-[#FED766]" />
+          <p className="font-sub text-[0.72rem] font-bold uppercase tracking-[0.2em] text-[#4D88E6]">
+            Where &amp; When
+          </p>
+          <SparkleStar className="h-3 w-3 text-[#FED766]" />
+        </div>
 
         <h2 className="mt-2 font-display text-[2.2rem] sm:text-[2.8rem] font-bold text-[#192739]">
           Ceremony &amp; Reception
@@ -46,14 +57,21 @@ export function EventDetails() {
           {locations.map((loc) => (
             <div
               key={loc.venue}
-              className="flex flex-col justify-between rounded-3xl border border-[#DCE8FA] bg-white p-6 sm:p-8 text-left shadow-sm"
+              className="flex flex-col justify-between rounded-3xl border border-[#DCE8FA] bg-white p-6 sm:p-8 text-left shadow-sm hover:border-[#4D88E6]/40 transition-colors"
             >
               <div>
-                <span className={`inline-block rounded-full px-3 py-1 font-display text-xs font-bold uppercase tracking-wider ${loc.badgeClass}`}>
-                  {loc.badge}
-                </span>
+                <div className="flex items-center justify-between">
+                  <span className={`inline-block rounded-full px-3 py-1 font-display text-xs font-bold uppercase tracking-wider ${loc.badgeClass}`}>
+                    {loc.badge}
+                  </span>
+                </div>
 
-                <h3 className="mt-3 font-display text-[1.45rem] font-bold text-[#192739]">
+                {/* SVG Illustration */}
+                <div className="my-3 flex justify-center rounded-2xl bg-[#F7FAFE] p-3 border border-[#E8F0FC]">
+                  {loc.illustration}
+                </div>
+
+                <h3 className="mt-3 font-display text-[1.4rem] font-bold text-[#192739]">
                   {loc.venue}
                 </h3>
 
