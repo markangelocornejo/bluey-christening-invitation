@@ -1,133 +1,157 @@
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import { Calendar, Heart, MapPin, Sparkles } from 'lucide-react'
+import { Calendar, ChevronDown, MapPin } from 'lucide-react'
 import { invitationData } from '../data/invitationData'
-import { FluffyCloud, PawPrint } from './BlueyDecorations'
+import { getGoogleCalendarUrl } from '../lib/calendar'
 
-const ease = [0.22, 1, 0.36, 1] as const
+type TimeLeft = {
+  days: number
+  hours: number
+  minutes: number
+  seconds: number
+  isPast: boolean
+}
+
+function calculateTimeLeft(targetIso: string): TimeLeft {
+  const diff = new Date(targetIso).getTime() - new Date().getTime()
+  if (diff <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0, isPast: true }
+
+  return {
+    days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+    hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
+    minutes: Math.floor((diff / 1000 / 60) % 60),
+    seconds: Math.floor((diff / 1000) % 60),
+    isPast: false,
+  }
+}
 
 export function HeroSection() {
-  const { baby, displayDate } = invitationData
+  const { baby, displayDate, displayTime, eventDate, event } = invitationData
+  const [timeLeft, setTimeLeft] = useState<TimeLeft>(() => calculateTimeLeft(eventDate))
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft(calculateTimeLeft(eventDate))
+    }, 1000)
+    return () => clearInterval(timer)
+  }, [eventDate])
 
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
   }
 
   return (
-    <section className="relative overflow-hidden px-5 py-20 text-center sm:px-7 sm:py-24" id="welcome">
-      <FluffyCloud className="absolute -left-12 bottom-4 h-36 w-60 opacity-40" />
-      <FluffyCloud className="absolute -right-16 top-8 h-40 w-64 opacity-35" />
-
+    <section className="relative overflow-hidden px-4 pt-10 pb-16 text-center sm:px-6 sm:pt-14 sm:pb-20" id="welcome">
       <motion.div
-        className="relative mx-auto max-w-2xl"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.85, ease }}
+        className="relative mx-auto max-w-xl"
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       >
-        {/* Top Eyebrow Tag */}
-        <div className="inline-flex items-center gap-2 rounded-full bg-[#EBF3FE] px-4 py-1.5 border border-[#82B5FB]/40 shadow-xs">
-          <Sparkles className="h-4 w-4 text-[#F69145]" />
-          <span className="font-sub text-[0.72rem] font-bold uppercase tracking-[0.18em] text-[#2D4F7C]">
-            Celebrating A Joyful New Beginning
-          </span>
-          <Sparkles className="h-4 w-4 text-[#5B93E6]" />
-        </div>
+        {/* Main Invitation Card */}
+        <div className="relative overflow-hidden rounded-[2.2rem] border border-[#DCE8FA] bg-white p-7 shadow-sm sm:p-10">
+          {/* Eyebrow */}
+          <p className="font-sub text-[0.72rem] font-bold uppercase tracking-[0.2em] text-[#4D88E6]">
+            Holy Baptism &amp; Dedication
+          </p>
 
-        {/* Heading */}
-        <h2 className="mt-4 font-display text-[2.6rem] font-bold leading-tight text-[#1E3557] sm:text-[3.2rem]">
-          Welcoming Baby <span className="text-[#3772FF]">{baby.nickname}</span>
-          <span className="block text-[#F69145] text-[0.88em]">Into God&apos;s Loving Family</span>
-        </h2>
+          {/* Child Name */}
+          <h1 className="mt-3 font-display text-[2.6rem] font-bold leading-tight text-[#192739] sm:text-[3.2rem]">
+            {baby.fullName}
+          </h1>
 
-        {/* Playful Bluey Divider */}
-        <div className="my-5 bluey-divider">
-          <span>🐾</span>
-        </div>
+          {/* Parents */}
+          <p className="mt-1 font-body text-sm font-medium text-[#64748B]">
+            Beloved son of <strong className="font-semibold text-[#192739]">{baby.parents.display}</strong>
+          </p>
 
-        {/* Baby Photo Card in Bluey Style */}
-        <div className="relative mx-auto mt-6 max-w-md">
-          {/* Card Frame */}
-          <div className="relative overflow-hidden rounded-3xl border-4 border-white bg-gradient-to-b from-[#82B5FB] to-[#5B93E6] p-4 shadow-xl">
-            {/* Top Character Artwork Banner */}
-            <div className="mx-auto mb-3 overflow-hidden rounded-2xl border-2 border-white/80 shadow-md">
-              <img
-                src="/images/bluey-family.jpg"
-                alt="Bluey Heeler Family"
-                className="h-44 w-full object-cover"
-              />
-            </div>
+          {/* Clean hairline divider */}
+          <div className="my-6 clean-divider">
+            <span />
+          </div>
 
-            {/* Inner Presentation Container */}
-            <div className="relative overflow-hidden rounded-2xl bg-white p-5 shadow-inner flex flex-col items-center justify-center text-center">
-              <div className="h-20 w-20 rounded-full bg-gradient-to-tr from-[#FFF4E8] to-[#EBF3FE] border-3 border-[#82B5FB]/40 flex items-center justify-center shadow-sm">
-                <span className="text-4xl">👶🍼</span>
+          {/* Authentic Bluey Family Character Illustration */}
+          <div className="mx-auto max-w-sm overflow-hidden rounded-2xl border border-[#E2EBF8] bg-[#F7FAFE] shadow-inner">
+            <img
+              src="/images/bluey-family.jpg"
+              alt="Bluey and the Heeler Family"
+              className="h-48 w-full object-cover sm:h-56"
+            />
+          </div>
+
+          {/* Date, Time & Church Highlight */}
+          <div className="mt-6 rounded-2xl bg-[#F7FAFE] p-4 text-left sm:p-5 border border-[#E8F0FC]">
+            <div className="grid gap-3 sm:grid-cols-2">
+              <div className="flex items-start gap-2.5">
+                <Calendar className="h-4 w-4 shrink-0 text-[#4D88E6] mt-0.5" />
+                <div>
+                  <p className="font-sub text-[0.65rem] font-bold uppercase tracking-wider text-[#8297B3]">Date &amp; Time</p>
+                  <p className="font-display text-sm font-bold text-[#192739]">{displayDate}</p>
+                  <p className="font-body text-xs text-[#64748B]">{displayTime}</p>
+                </div>
               </div>
-              <h3 className="mt-3 font-display text-[1.45rem] font-bold text-[#1E3557]">
-                {baby.fullName}
-              </h3>
-              <p className="font-body text-xs font-bold text-[#F69145]">
-                {baby.age} &bull; Blessed &amp; Loved
-              </p>
 
-              {/* Corner Paw Accents */}
-              <PawPrint className="absolute top-2 left-2 h-4 w-4 opacity-30" color="#5B93E6" />
-              <PawPrint className="absolute bottom-2 right-2 h-4 w-4 opacity-30" color="#F69145" />
-            </div>
-
-            {/* Parents Banner */}
-            <div className="mt-3 flex items-center justify-center gap-1.5 text-white">
-              <Heart className="h-3.5 w-3.5 fill-white" />
-              <p className="font-sub text-[0.82rem] font-bold">
-                Proud Parents: {baby.parents.display}
-              </p>
-              <Heart className="h-3.5 w-3.5 fill-white" />
-            </div>
-          </div>
-        </div>
-
-        {/* Welcoming Message */}
-        <p className="mx-auto mt-7 max-w-lg font-body text-[1.05rem] leading-relaxed text-[#4A6282] sm:text-[1.15rem]">
-          We are so blessed to share this milestone with our most beloved family and friends.
-          Come celebrate Liam&apos;s baptism with fun games, sweet treats, lots of laughs, and
-          a heart full of gratitude!
-        </p>
-
-        {/* Quick Details Badges */}
-        <div className="mt-6 flex flex-wrap justify-center gap-3">
-          <div className="flex items-center gap-2 rounded-2xl bg-white px-4 py-2.5 shadow-sm border border-[#E3EDFC]">
-            <Calendar className="h-5 w-5 text-[#5B93E6]" />
-            <div className="text-left">
-              <p className="font-sub text-[0.65rem] font-bold uppercase text-[#708CAE]">When</p>
-              <p className="font-display text-[0.88rem] font-bold text-[#1E3557]">{displayDate}</p>
+              <div className="flex items-start gap-2.5">
+                <MapPin className="h-4 w-4 shrink-0 text-[#F58A3C] mt-0.5" />
+                <div>
+                  <p className="font-sub text-[0.65rem] font-bold uppercase tracking-wider text-[#8297B3]">Ceremony Venue</p>
+                  <p className="font-display text-sm font-bold text-[#192739]">{event.ceremony.venue}</p>
+                  <p className="font-body text-xs text-[#64748B]">San Juan City</p>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="flex items-center gap-2 rounded-2xl bg-white px-4 py-2.5 shadow-sm border border-[#E3EDFC]">
-            <MapPin className="h-5 w-5 text-[#F69145]" />
-            <div className="text-left">
-              <p className="font-sub text-[0.65rem] font-bold uppercase text-[#708CAE]">Where</p>
-              <p className="font-display text-[0.88rem] font-bold text-[#1E3557]">{invitationData.event.ceremony.venue}</p>
+          {/* Live Countdown Pills */}
+          <div className="mt-6 flex items-center justify-center gap-2 font-display">
+            <div className="rounded-xl bg-[#EEF4FD] px-3 py-2 text-center min-w-[3.5rem]">
+              <span className="block text-lg font-bold text-[#4D88E6] leading-none">{timeLeft.days}</span>
+              <span className="font-sub text-[0.6rem] font-bold uppercase text-[#8297B3]">Days</span>
             </div>
+            <div className="rounded-xl bg-[#FFF7EE] px-3 py-2 text-center min-w-[3.5rem]">
+              <span className="block text-lg font-bold text-[#F58A3C] leading-none">{timeLeft.hours}</span>
+              <span className="font-sub text-[0.6rem] font-bold uppercase text-[#8297B3]">Hours</span>
+            </div>
+            <div className="rounded-xl bg-[#FDF9EE] px-3 py-2 text-center min-w-[3.5rem]">
+              <span className="block text-lg font-bold text-[#E5B53A] leading-none">{timeLeft.minutes}</span>
+              <span className="font-sub text-[0.6rem] font-bold uppercase text-[#8297B3]">Mins</span>
+            </div>
+            <div className="rounded-xl bg-[#F0FBF5] px-3 py-2 text-center min-w-[3.5rem]">
+              <span className="block text-lg font-bold text-[#48B87B] leading-none">{timeLeft.seconds}</span>
+              <span className="font-sub text-[0.6rem] font-bold uppercase text-[#8297B3]">Secs</span>
+            </div>
+          </div>
+
+          {/* Action Buttons */}
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <button
+              className="bingo-button"
+              type="button"
+              onClick={() => scrollToSection('rsvp')}
+            >
+              <span>Confirm Attendance</span>
+            </button>
+            <a
+              className="inline-flex items-center gap-1.5 rounded-full border border-[#DCE8FA] bg-white px-5 py-3 font-display text-[0.88rem] font-bold text-[#192739] hover:bg-[#F7FAFE] transition-colors"
+              href={getGoogleCalendarUrl()}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Calendar size={15} className="text-[#4D88E6]" />
+              <span>Add to Calendar</span>
+            </a>
           </div>
         </div>
 
-        {/* Action Buttons */}
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-3.5">
-          <button
-            className="bingo-button"
-            type="button"
-            onClick={() => scrollToSection('rsvp')}
-          >
-            <span>RSVP for Celebration 🎈</span>
-          </button>
-          <button
-            className="bluey-button"
-            type="button"
-            onClick={() => scrollToSection('event-details')}
-          >
-            <span>View Event &amp; Map 📍</span>
-          </button>
-        </div>
+        {/* Subtle scroll down indicator */}
+        <button
+          className="mt-6 inline-flex items-center gap-1.5 font-sub text-xs font-bold uppercase tracking-wider text-[#8297B3] hover:text-[#4D88E6] transition-colors cursor-pointer"
+          type="button"
+          onClick={() => scrollToSection('event-details')}
+        >
+          <span>View Ceremony &amp; Reception Details</span>
+          <ChevronDown size={14} />
+        </button>
       </motion.div>
     </section>
   )

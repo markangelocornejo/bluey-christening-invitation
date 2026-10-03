@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion'
 import { Clock, MapPin, Navigation } from 'lucide-react'
 import { invitationData } from '../data/invitationData'
-import { ChurchChapelIllustration, FluffyCloud, ReceptionPartyIllustration } from './BlueyDecorations'
 
 export function EventDetails() {
   const { event } = invitationData
@@ -9,107 +8,82 @@ export function EventDetails() {
   const locations = [
     {
       ...event.ceremony,
-      illustrationType: 'church',
       badge: 'Ceremony',
-      badgeColor: 'bg-[#EBF3FE] text-[#3772FF] border-[#82B5FB]/40',
+      badgeClass: 'bg-[#EEF4FD] text-[#4D88E6]',
       btnClass: 'bluey-button',
     },
     {
       ...event.reception,
-      illustrationType: 'reception',
-      badge: 'Reception & Party',
-      badgeColor: 'bg-[#FFF4E8] text-[#E8741E] border-[#FFB677]/40',
+      badge: 'Reception',
+      badgeClass: 'bg-[#FFF7EE] text-[#F58A3C]',
       btnClass: 'bingo-button',
     },
   ]
 
   return (
-    <section className="relative overflow-hidden px-5 py-24 text-center sm:px-7 sm:py-28" id="event-details">
-      <FluffyCloud className="absolute -left-16 top-6 h-36 w-60 opacity-35" />
-      <FluffyCloud className="absolute -right-16 bottom-6 h-36 w-60 opacity-35" />
-
+    <section className="relative px-4 py-16 text-center sm:px-6 sm:py-20" id="event-details">
       <motion.div
-        className="relative mx-auto max-w-xl lg:max-w-5xl"
-        initial={{ opacity: 0, y: 30 }}
+        className="relative mx-auto max-w-4xl"
+        initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.85 }}
+        transition={{ duration: 0.7 }}
       >
-        {/* Eyebrow */}
-        <p className="font-sub text-[0.68rem] font-bold uppercase tracking-[0.24em] text-[#5B93E6]">
+        <p className="font-sub text-[0.72rem] font-bold uppercase tracking-[0.2em] text-[#4D88E6]">
           Where &amp; When
         </p>
 
-        {/* Heading */}
-        <h2 className="mt-3 font-display text-[2.5rem] sm:text-[3.2rem] lg:text-[3.8rem] font-bold text-[#1E3557]">
-          Celebration Locations 📍
+        <h2 className="mt-2 font-display text-[2.2rem] sm:text-[2.8rem] font-bold text-[#192739]">
+          Ceremony &amp; Reception
         </h2>
 
-        <div className="my-5 bluey-divider">
-          <span>⛪</span>
+        <div className="my-4 clean-divider">
+          <span />
         </div>
 
         {/* Location Cards Grid */}
-        <div className="mx-auto mt-10 grid gap-8 sm:grid-cols-2 lg:gap-10">
+        <div className="mx-auto mt-8 grid gap-6 sm:grid-cols-2 lg:gap-8">
           {locations.map((loc) => (
-            <motion.article
+            <div
               key={loc.venue}
-              className="flex flex-col justify-between rounded-3xl bg-white p-7 sm:p-9 shadow-md border-2 border-[#E3EDFC] hover:border-[#82B5FB] transition-all"
-              whileHover={{ y: -6 }}
+              className="flex flex-col justify-between rounded-3xl border border-[#DCE8FA] bg-white p-6 sm:p-8 text-left shadow-sm"
             >
               <div>
-                {/* Illustration */}
-                <div className="mx-auto flex h-28 w-44 items-center justify-center">
-                  {loc.illustrationType === 'church' ? (
-                    <ChurchChapelIllustration className="h-full w-full" />
-                  ) : (
-                    <ReceptionPartyIllustration className="h-full w-full" />
-                  )}
-                </div>
-
-                {/* Badge */}
-                <span
-                  className={`mt-4 inline-block rounded-full px-3.5 py-1 text-[0.68rem] font-display font-bold uppercase tracking-wider border ${loc.badgeColor}`}
-                >
+                <span className={`inline-block rounded-full px-3 py-1 font-display text-xs font-bold uppercase tracking-wider ${loc.badgeClass}`}>
                   {loc.badge}
                 </span>
 
-                {/* Venue Name */}
-                <h3 className="mt-3 font-display text-[1.5rem] sm:text-[1.75rem] font-bold text-[#1E3557]">
+                <h3 className="mt-3 font-display text-[1.45rem] font-bold text-[#192739]">
                   {loc.venue}
                 </h3>
 
-                {/* Time */}
-                <div className="mt-2.5 flex items-center justify-center gap-1.5 font-sub text-[0.88rem] font-bold text-[#F69145]">
-                  <Clock className="h-4 w-4" />
+                <div className="mt-2 flex items-center gap-2 font-sub text-xs font-bold text-[#F58A3C]">
+                  <Clock size={14} />
                   <span>{loc.time}</span>
                 </div>
 
-                {/* Address */}
-                <div className="mt-3 flex items-center justify-center gap-1.5 font-body text-[0.95rem] text-[#4A6282]">
-                  <MapPin className="h-4 w-4 shrink-0 text-[#82B5FB]" />
+                <div className="mt-3 flex items-start gap-2 font-body text-sm text-[#64748B]">
+                  <MapPin size={16} className="shrink-0 text-[#8297B3] mt-0.5" />
                   <span>{loc.address}</span>
                 </div>
 
-                {/* Special Note */}
-                <p className="mt-3 font-hand text-[1.15rem] font-bold text-[#2D4F7C] leading-snug">
+                <p className="mt-3 font-body text-xs text-[#8297B3] border-t border-[#F0F4FA] pt-3 leading-relaxed">
                   {loc.note}
                 </p>
               </div>
 
-              {/* Map Button */}
-              <div className="mt-7 pt-4 border-t border-[#F0F6FF]">
+              <div className="mt-6 pt-2">
                 <a
-                  className={`${loc.btnClass} w-full`}
+                  className={`${loc.btnClass} w-full text-xs font-bold`}
                   href={loc.mapLink}
                   target="_blank"
                   rel="noreferrer"
                 >
-                  <Navigation size={16} />
-                  <span>Open in Google Maps</span>
+                  <Navigation size={14} />
+                  <span>Get Directions on Google Maps</span>
                 </a>
               </div>
-            </motion.article>
+            </div>
           ))}
         </div>
       </motion.div>

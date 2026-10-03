@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { ClosingSection } from './components/ClosingSection'
-import { CountdownSection } from './components/CountdownSection'
 import { EnvelopeIntro } from './components/EnvelopeIntro'
 import { EventDetails } from './components/EventDetails'
 import { FAQSection } from './components/FAQSection'
@@ -11,9 +10,7 @@ import { GiftSection } from './components/GiftSection'
 import { GodparentsSection } from './components/GodparentsSection'
 import { HeroSection } from './components/HeroSection'
 import { MusicToggle } from './components/MusicToggle'
-import { RSVPReminderNudge } from './components/RSVPReminderNudge'
 import { RSVPSection } from './components/RSVPSection'
-import { SaveTheDateSection } from './components/SaveTheDateSection'
 import { SpiritualSection } from './components/SpiritualSection'
 import { TimelineSection } from './components/TimelineSection'
 import { invitationData } from './data/invitationData'
@@ -29,18 +26,18 @@ export function App() {
   const dismissIntro = useCallback(() => setIsIntroVisible(false), [])
 
   useEffect(() => {
-    document.title = `${invitationData.baby.nickname}'s Christening & Dedication | Bluey Celebration`
+    document.title = `${invitationData.baby.fullName} | Christening Invitation`
     document
       .querySelector('meta[name="description"]')
       ?.setAttribute(
         'content',
-        `Join us as we celebrate the Christening and dedication of ${invitationData.baby.fullName} with love, faith, and lots of Bluey fun!`
+        `Join us as we celebrate the Holy Baptism and Christening of ${invitationData.baby.fullName}.`
       )
   }, [])
 
   return (
     <>
-      {/* Interactive Envelope Intro Overlay */}
+      {/* 3D Opening Envelope Intro */}
       <AnimatePresence>
         {isIntroVisible && (
           <EnvelopeIntro
@@ -50,9 +47,9 @@ export function App() {
         )}
       </AnimatePresence>
 
-      {/* Persistent Floating Music Toggle */}
+      {/* Floating Audio Controller */}
       <div
-        className={`fixed bottom-4 right-4 z-40 transition-opacity duration-500 sm:bottom-6 sm:right-6 ${
+        className={`fixed bottom-4 right-4 z-40 transition-opacity duration-300 sm:bottom-6 sm:right-6 ${
           isIntroVisible ? 'pointer-events-none opacity-0' : 'opacity-100'
         }`}
         aria-hidden={isIntroVisible}
@@ -60,39 +57,34 @@ export function App() {
         <MusicToggle />
       </div>
 
-      {/* Floating RSVP Reminder Nudge */}
-      <RSVPReminderNudge enabled={!isIntroVisible} />
-
       {/* Main Invitation Canvas */}
       <motion.main
         className={`invitation-canvas ${isIntroVisible ? 'pointer-events-none' : ''}`}
         aria-hidden={isIntroVisible}
         inert={isIntroVisible}
-        initial={shouldReduceMotion ? false : { opacity: 0, y: 80 }}
+        initial={shouldReduceMotion ? false : { opacity: 0, y: 40 }}
         animate={
           isPageRevealed
             ? { opacity: 1, y: 0 }
-            : { opacity: 0, y: shouldReduceMotion ? 0 : 80 }
+            : { opacity: 0, y: shouldReduceMotion ? 0 : 40 }
         }
-        transition={shouldReduceMotion ? { duration: 0 } : { duration: 1.4, ease }}
+        transition={shouldReduceMotion ? { duration: 0 } : { duration: 1.0, ease }}
       >
-        {/* 1. Welcoming & Baby Presentation */}
-        <SaveTheDateSection />
+        {/* 1. Unified Hero Presentation & Countdown */}
         <HeroSection />
-        <CountdownSection />
 
-        {/* 2. Venues & Schedule */}
+        {/* 2. Locations & Timeline */}
         <EventDetails />
         <TimelineSection />
 
-        {/* 3. RSVP Section (Moved to the prominent center position!) */}
+        {/* 3. Central RSVP Form */}
         <RSVPSection />
 
         {/* 4. Spiritual Blessing & Godparents */}
         <SpiritualSection />
         <GodparentsSection />
 
-        {/* 5. Photos, Theme Guide, FAQs, and Gifts */}
+        {/* 5. Photos, Attire Guide, FAQs, and Gifts */}
         <GallerySection />
         <FinerDetailsSection />
         <FAQSection />

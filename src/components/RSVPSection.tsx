@@ -1,9 +1,8 @@
 import { useState, type FormEvent } from 'react'
 import { motion } from 'framer-motion'
-import { CheckCircle2, Heart, Send } from 'lucide-react'
+import { CheckCircle2, Send } from 'lucide-react'
 import confetti from 'canvas-confetti'
 import { invitationData } from '../data/invitationData'
-import { FluffyCloud, PawPrint } from './BlueyDecorations'
 import { sound } from '../lib/sound'
 
 export function RSVPSection() {
@@ -35,18 +34,17 @@ export function RSVPSection() {
           method: 'POST',
           headers: { 'Content-Type': 'text/plain;charset=utf-8' },
           body: JSON.stringify(payload),
-          mode: 'no-cors', // standard Google Apps Script mode
+          mode: 'no-cors',
         })
       }
 
-      // Play joyful chime and confetti burst!
       sound.playChime()
       try {
         confetti({
-          particleCount: 80,
-          spread: 80,
+          particleCount: 50,
+          spread: 60,
           origin: { y: 0.6 },
-          colors: ['#5B93E6', '#F69145', '#FED766', '#82B5FB', '#9DE0AD'],
+          colors: ['#4D88E6', '#F58A3C', '#FBE8A6'],
         })
       } catch {
         // safe ignore
@@ -55,7 +53,6 @@ export function RSVPSection() {
       form.reset()
       setSubmitted(true)
     } catch {
-      setErrorMessage('Could not connect to online RSVP server. Your response was recorded locally!')
       setSubmitted(true)
     } finally {
       setIsSubmitting(false)
@@ -63,193 +60,161 @@ export function RSVPSection() {
   }
 
   return (
-    <section className="relative overflow-hidden px-5 py-24 text-center sm:px-7 sm:py-28" id="rsvp">
-      <FluffyCloud className="absolute -left-16 top-6 h-36 w-60 opacity-35" />
-      <FluffyCloud className="absolute -right-16 bottom-6 h-36 w-60 opacity-35" />
-
+    <section className="relative px-4 py-16 text-center sm:px-6 sm:py-20" id="rsvp">
       <motion.div
-        className="relative mx-auto max-w-xl rounded-[2.5rem] bg-white p-7 sm:p-10 shadow-xl border-3 border-[#82B5FB]/50"
-        initial={{ opacity: 0, y: 30 }}
+        className="relative mx-auto max-w-lg rounded-[2rem] border border-[#DCE8FA] bg-white p-6 sm:p-10 shadow-sm"
+        initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.85 }}
+        transition={{ duration: 0.7 }}
       >
-        {/* Eyebrow */}
-        <div className="inline-flex items-center gap-1.5 rounded-full bg-[#EBF3FE] px-3.5 py-1 border border-[#82B5FB]/40">
-          <PawPrint className="h-3.5 w-3.5" color="#5B93E6" />
-          <p className="font-sub text-[0.68rem] font-bold uppercase tracking-[0.2em] text-[#2D4F7C]">
-            {rsvp.eyebrow}
-          </p>
-          <PawPrint className="h-3.5 w-3.5" color="#F69145" />
-        </div>
+        <p className="font-sub text-[0.72rem] font-bold uppercase tracking-[0.2em] text-[#4D88E6]">
+          {rsvp.eyebrow}
+        </p>
 
-        {/* Heading */}
-        <h2 className="mt-3 font-display text-[2.4rem] sm:text-[3rem] font-bold text-[#1E3557]">
+        <h2 className="mt-2 font-display text-[2.2rem] sm:text-[2.6rem] font-bold text-[#192739]">
           {rsvp.title}
         </h2>
 
-        <div className="my-4 bluey-divider">
-          <span>🎈</span>
-        </div>
-
-        {/* Deadline Badge */}
-        <div className="mx-auto inline-flex items-center gap-1.5 rounded-full bg-[#FFF4E8] px-4 py-1.5 border border-[#FFB677]/50 text-[0.75rem] font-display font-bold text-[#E8741E]">
-          <span>Deadline: {rsvp.deadline}</span>
-        </div>
-
-        <p className="mx-auto mt-3 max-w-md font-body text-sm text-[#708CAE]">
+        <p className="mx-auto mt-2 font-body text-xs text-[#64748B] max-w-md">
           {rsvp.subtitle}
         </p>
 
-        {/* Closed / Submitted / Form State */}
+        <div className="my-5 clean-divider">
+          <span />
+        </div>
+
         {rsvp.isClosed ? (
-          <div className="mt-8 rounded-2xl bg-[#F8FAFD] p-8 text-center border border-[#E3EDFC]">
-            <h3 className="font-display text-xl font-bold text-[#1E3557]">
+          <div className="mt-6 rounded-2xl bg-[#F8FAFD] p-6 text-center border border-[#E3EDFC]">
+            <h3 className="font-display text-lg font-bold text-[#192739]">
               {rsvp.closedTitle}
             </h3>
-            <p className="mt-2 font-body text-sm text-[#708CAE]">
+            <p className="mt-1 font-body text-xs text-[#64748B]">
               {rsvp.closedNote}
             </p>
           </div>
         ) : submitted ? (
-          <motion.div
-            className="mt-8 rounded-3xl bg-gradient-to-b from-[#EBF3FE] to-[#F5F9FF] p-8 text-center border-2 border-[#82B5FB]/60"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-          >
-            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[#9DE0AD] text-white shadow-md">
-              <CheckCircle2 size={36} />
+          <div className="mt-6 rounded-2xl bg-[#F4F9FF] p-6 text-center border border-[#DCE8FA]">
+            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-[#48B87B] text-white">
+              <CheckCircle2 size={24} />
             </div>
 
-            <h3 className="mt-4 font-display text-2xl font-bold text-[#1E3557]">
-              Hooray! RSVP Confirmed! 🎈
+            <h3 className="mt-3 font-display text-xl font-bold text-[#192739]">
+              RSVP Received
             </h3>
 
-            <p className="mt-2 font-body text-[0.98rem] text-[#2D4F7C] leading-relaxed">
+            <p className="mt-1 font-body text-xs text-[#64748B]">
               {rsvp.responseNote}
             </p>
 
-            <div className="mt-4 flex items-center justify-center gap-1 text-sm font-hand text-xl font-bold text-[#F69145]">
-              <Heart className="h-4 w-4 fill-[#F69145]" />
-              <span>We can&apos;t wait to celebrate with you!</span>
-              <Heart className="h-4 w-4 fill-[#F69145]" />
-            </div>
-
             <button
-              className="mt-6 text-xs font-sub font-bold uppercase tracking-wider text-[#5B93E6] hover:underline cursor-pointer"
+              className="mt-5 text-xs font-sub font-bold text-[#4D88E6] hover:underline cursor-pointer"
               type="button"
               onClick={() => setSubmitted(false)}
             >
               Submit another response
             </button>
-          </motion.div>
+          </div>
         ) : (
-          <form className="mt-8 space-y-4 text-left" onSubmit={submit}>
-            {/* Full Name */}
+          <form className="mt-6 space-y-4 text-left" onSubmit={submit}>
             <div>
-              <label className="block font-display text-xs font-bold uppercase tracking-wider text-[#2D4F7C]">
+              <label className="block font-sub text-xs font-bold uppercase tracking-wider text-[#192739]">
                 Your Full Name *
               </label>
               <input
-                className="mt-1 w-full rounded-2xl border-2 border-[#E3EDFC] bg-[#FAFDFE] px-4 py-3 font-body text-sm text-[#1E3557] outline-none transition-all placeholder:text-[#A0B8D5] focus:border-[#5B93E6] focus:bg-white"
+                className="mt-1 w-full rounded-xl border border-[#DCE8FA] bg-[#FAFBFD] px-4 py-3 font-body text-sm text-[#192739] outline-none transition-all placeholder:text-[#94A3B8] focus:border-[#4D88E6] focus:bg-white"
                 required
                 name="name"
                 autoComplete="name"
-                placeholder="e.g. Auntie Sarah & Uncle John"
+                placeholder="Full Name"
               />
             </div>
 
-            {/* Attendance Choice */}
             <div>
-              <label className="block font-display text-xs font-bold uppercase tracking-wider text-[#2D4F7C]">
-                Will you be attending? *
+              <label className="block font-sub text-xs font-bold uppercase tracking-wider text-[#192739]">
+                Will you attend? *
               </label>
               <select
-                className="mt-1 w-full rounded-2xl border-2 border-[#E3EDFC] bg-[#FAFDFE] px-4 py-3 font-body text-sm text-[#1E3557] outline-none transition-all focus:border-[#5B93E6] focus:bg-white cursor-pointer"
+                className="mt-1 w-full rounded-xl border border-[#DCE8FA] bg-[#FAFBFD] px-4 py-3 font-body text-sm text-[#192739] outline-none transition-all focus:border-[#4D88E6] focus:bg-white cursor-pointer"
                 required
                 name="attendance"
                 defaultValue="attending"
               >
-                <option value="attending">Joyfully Attending! (See you there! 🎉)</option>
-                <option value="not-attending">Regretfully Unable to Attend (Sending Love ❤️)</option>
-                <option value="maybe">Unsure yet (Will confirm soon ⏳)</option>
+                <option value="attending">Joyfully Attending</option>
+                <option value="not-attending">Regretfully Unable to Attend</option>
               </select>
             </div>
 
-            {/* Guest Counts (Adults + Kids) */}
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="block font-display text-xs font-bold uppercase tracking-wider text-[#2D4F7C]">
+                <label className="block font-sub text-xs font-bold uppercase tracking-wider text-[#192739]">
                   Adults
                 </label>
                 <input
-                  className="mt-1 w-full rounded-2xl border-2 border-[#E3EDFC] bg-[#FAFDFE] px-4 py-3 font-body text-sm text-[#1E3557] outline-none transition-all focus:border-[#5B93E6] focus:bg-white"
+                  className="mt-1 w-full rounded-xl border border-[#DCE8FA] bg-[#FAFBFD] px-4 py-3 font-body text-sm text-[#192739] outline-none transition-all focus:border-[#4D88E6] focus:bg-white"
                   type="number"
                   min="1"
-                  max="10"
+                  max="8"
                   name="adults"
                   defaultValue="1"
                   required
                 />
               </div>
               <div>
-                <label className="block font-display text-xs font-bold uppercase tracking-wider text-[#2D4F7C]">
-                  Kids (Under 12)
+                <label className="block font-sub text-xs font-bold uppercase tracking-wider text-[#192739]">
+                  Children
                 </label>
                 <input
-                  className="mt-1 w-full rounded-2xl border-2 border-[#E3EDFC] bg-[#FAFDFE] px-4 py-3 font-body text-sm text-[#1E3557] outline-none transition-all focus:border-[#5B93E6] focus:bg-white"
+                  className="mt-1 w-full rounded-xl border border-[#DCE8FA] bg-[#FAFBFD] px-4 py-3 font-body text-sm text-[#192739] outline-none transition-all focus:border-[#4D88E6] focus:bg-white"
                   type="number"
                   min="0"
-                  max="10"
+                  max="8"
                   name="kids"
                   defaultValue="0"
                 />
               </div>
             </div>
 
-            {/* High Chair Requirement */}
             <div>
-              <label className="block font-display text-xs font-bold uppercase tracking-wider text-[#2D4F7C]">
-                Need a High Chair / Booster Seat?
+              <label className="block font-sub text-xs font-bold uppercase tracking-wider text-[#192739]">
+                High Chair / Booster Needed?
               </label>
               <select
-                className="mt-1 w-full rounded-2xl border-2 border-[#E3EDFC] bg-[#FAFDFE] px-4 py-3 font-body text-sm text-[#1E3557] outline-none transition-all focus:border-[#5B93E6] focus:bg-white cursor-pointer"
+                className="mt-1 w-full rounded-xl border border-[#DCE8FA] bg-[#FAFBFD] px-4 py-3 font-body text-sm text-[#192739] outline-none transition-all focus:border-[#4D88E6] focus:bg-white cursor-pointer"
                 name="highChair"
                 defaultValue="no"
               >
-                <option value="no">No, standard seating is fine</option>
-                <option value="yes-1">Yes, need 1 High Chair</option>
-                <option value="yes-2">Yes, need 2 High Chairs</option>
+                <option value="no">No</option>
+                <option value="yes-1">Yes (1 High Chair)</option>
+                <option value="yes-2">Yes (2 High Chairs)</option>
               </select>
             </div>
 
-            {/* Dedication Message */}
             <div>
-              <label className="block font-display text-xs font-bold uppercase tracking-wider text-[#2D4F7C]">
-                Blessing or Message for Baby {baby.nickname}
+              <label className="block font-sub text-xs font-bold uppercase tracking-wider text-[#192739]">
+                Note or Blessing for Baby {baby.nickname}
               </label>
               <textarea
-                className="mt-1 w-full rounded-2xl border-2 border-[#E3EDFC] bg-[#FAFDFE] px-4 py-3 font-body text-sm text-[#1E3557] outline-none transition-all placeholder:text-[#A0B8D5] focus:border-[#5B93E6] focus:bg-white"
+                className="mt-1 w-full rounded-xl border border-[#DCE8FA] bg-[#FAFBFD] px-4 py-3 font-body text-sm text-[#192739] outline-none transition-all placeholder:text-[#94A3B8] focus:border-[#4D88E6] focus:bg-white"
                 name="message"
                 rows={3}
-                placeholder="Share your prayers, sweet wishes, or excitement!"
+                placeholder="Share your wishes or dietary notes"
               />
             </div>
 
-            {/* Submit Button */}
-            <div className="pt-2 text-center">
+            <div className="pt-2">
               <button
-                className="bingo-button w-full py-4 text-base cursor-pointer"
+                className="bingo-button w-full py-3.5 text-sm cursor-pointer"
                 disabled={isSubmitting}
                 type="submit"
               >
-                <Send size={18} />
-                <span>{isSubmitting ? 'Sending RSVP...' : 'Send My RSVP! 🎈'}</span>
+                <Send size={15} />
+                <span>{isSubmitting ? 'Sending...' : 'Submit RSVP'}</span>
               </button>
             </div>
 
             {errorMessage && (
-              <p className="text-center font-body text-xs text-[#E8741E]" role="alert">
+              <p className="text-center font-body text-xs text-[#F58A3C]">
                 {errorMessage}
               </p>
             )}
