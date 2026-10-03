@@ -1,0 +1,297 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bluey-sky: #5B93E6;
+  --color-bluey-light: #82B5FB;
+  --color-bluey-soft: #EBF3FE;
+  --color-bluey-navy: #1E3557;
+  --color-bluey-blue: #3772FF;
+  --color-bingo-orange: #F69145;
+  --color-bingo-peach: #FFB677;
+  --color-bingo-cream: #FFF4E8;
+  --color-butter-yellow: #FED766;
+  --color-soft-cloud: #FAFDFE;
+  --color-mint: #9DE0AD;
+  --font-display: "Fredoka", sans-serif;
+  --font-body: "Nunito", sans-serif;
+  --font-sub: "Quicksand", sans-serif;
+  --font-hand: "Caveat", cursive;
+}
+
+:root {
+  --bluey-sky: #5B93E6;
+  --bluey-light: #82B5FB;
+  --bluey-soft: #EBF3FE;
+  --bluey-navy: #1E3557;
+  --bingo-orange: #F69145;
+  --bingo-peach: #FFB677;
+  --bingo-cream: #FFF4E8;
+  --butter-yellow: #FED766;
+  --soft-cloud: #FAFDFE;
+  --mint: #9DE0AD;
+  font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: var(--bluey-navy);
+  background: var(--soft-cloud);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #FAFDFE;
+  background-image:
+    radial-gradient(circle at 12% 10%, rgba(91, 147, 230, 0.12) 0 2px, transparent 3px),
+    radial-gradient(circle at 88% 22%, rgba(246, 145, 69, 0.12) 0 2px, transparent 3px),
+    radial-gradient(circle at 35% 85%, rgba(254, 215, 102, 0.18) 0 2.5px, transparent 3.5px),
+    radial-gradient(ellipse at top left, rgba(235, 243, 254, 0.9), transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(255, 244, 232, 0.8), transparent 50%);
+  background-size: 52px 52px, 68px 68px, 76px 76px, 100% 100%, 100% 100%;
+  color: var(--bluey-navy);
+  margin: 0;
+  min-height: 100vh;
+  min-width: 320px;
+}
+
+/* Custom Typography Utilities */
+.font-display {
+  font-family: "Fredoka", sans-serif;
+}
+
+.font-body {
+  font-family: "Nunito", sans-serif;
+}
+
+.font-sub {
+  font-family: "Quicksand", sans-serif;
+}
+
+.font-hand {
+  font-family: "Caveat", cursive;
+}
+
+/* Invitation Canvas */
+.invitation-canvas {
+  background-color: #FAFDFE;
+  background-image:
+    radial-gradient(circle at 10% 5%, rgba(91, 147, 230, 0.08) 0 1.5px, transparent 2px),
+    radial-gradient(circle at 90% 30%, rgba(246, 145, 69, 0.08) 0 1.5px, transparent 2px),
+    radial-gradient(circle at 20% 70%, rgba(254, 215, 102, 0.1) 0 2px, transparent 3px),
+    linear-gradient(180deg, rgba(235, 243, 254, 0.4) 0%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 244, 232, 0.4) 100%);
+  background-size: 60px 60px, 75px 75px, 85px 85px, 100% 100%;
+  margin-inline: auto;
+  width: 100%;
+  overflow: hidden;
+}
+
+.invitation-canvas > section:not(:first-child)::before,
+.invitation-canvas > footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 2px;
+  width: min(50vw, 14rem);
+  background: linear-gradient(90deg, transparent, rgba(91, 147, 230, 0.35), rgba(246, 145, 69, 0.35), transparent);
+  border-radius: 999px;
+}
+
+/* Buttons */
+.bluey-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #5B93E6 0%, #3772FF 100%);
+  color: #FFFFFF;
+  border-radius: 9999px;
+  padding: 0.9rem 1.6rem;
+  font-family: "Fredoka", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  box-shadow: 0 10px 22px rgba(55, 114, 255, 0.28), 0 3px 6px rgba(0, 0, 0, 0.06);
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  transition: all 250ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: pointer;
+}
+
+.bluey-button:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 14px 28px rgba(55, 114, 255, 0.38), 0 4px 8px rgba(0, 0, 0, 0.08);
+  background: linear-gradient(135deg, #4A84DD 0%, #2A64F0 100%);
+}
+
+.bluey-button:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+.bingo-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #F69145 0%, #E8741E 100%);
+  color: #FFFFFF;
+  border-radius: 9999px;
+  padding: 0.9rem 1.6rem;
+  font-family: "Fredoka", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  box-shadow: 0 10px 22px rgba(232, 116, 30, 0.28), 0 3px 6px rgba(0, 0, 0, 0.06);
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  transition: all 250ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: pointer;
+}
+
+.bingo-button:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 14px 28px rgba(232, 116, 30, 0.38), 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+.bingo-button:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+/* Card Styles */
+.bluey-card {
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(12px);
+  border: 2px solid #E3EDFC;
+  box-shadow: 0 20px 48px rgba(30, 53, 87, 0.08), 0 4px 12px rgba(91, 147, 230, 0.06);
+  border-radius: 2rem;
+  position: relative;
+}
+
+.arch-card {
+  border-radius: 9rem 9rem 2.2rem 2.2rem;
+}
+
+/* Playful Divider */
+.bluey-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-inline: auto;
+  width: fit-content;
+}
+
+.bluey-divider::before,
+.bluey-divider::after {
+  content: "";
+  height: 2px;
+  width: 2.8rem;
+  background: linear-gradient(90deg, transparent, #82B5FB, transparent);
+  border-radius: 999px;
+}
+
+.bluey-divider > span {
+  display: inline-block;
+  font-size: 1.1rem;
+}
+
+/* Floating Animations */
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(2deg);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+
+@keyframes cloudDrift {
+  0% {
+    transform: translateX(-5%);
+  }
+  50% {
+    transform: translateX(5%);
+  }
+  100% {
+    transform: translateX(-5%);
+  }
+}
+
+.animate-float-gentle {
+  animation: floatGentle 4s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+.animate-cloud-drift {
+  animation: cloudDrift 18s ease-in-out infinite;
+}
+
+/* Speckles & Confetti Background */
+.bluey-speckles::before,
+.bluey-speckles::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.bluey-speckles::before {
+  top: 16px;
+  left: 18px;
+  width: 6px;
+  height: 6px;
+  background: #5B93E6;
+  opacity: 0.45;
+  box-shadow:
+    24px 30px 0 -1px #FFB677,
+    48px 12px 0 0 #FED766,
+    80px 42px 0 -1.5px #5B93E6,
+    110px 18px 0 0 #9DE0AD,
+    140px 48px 0 -1px #F69145;
+}
+
+.bluey-speckles::after {
+  bottom: 22px;
+  right: 20px;
+  width: 6px;
+  height: 6px;
+  background: #F69145;
+  opacity: 0.45;
+  box-shadow:
+    -26px -18px 0 -1px #5B93E6,
+    -54px 8px 0 0 #FED766,
+    -88px -20px 0 -1.5px #FFB677,
+    -120px 6px 0 0 #82B5FB;
+}
+
+/* Reduced Motion Preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
