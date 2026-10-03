@@ -114,52 +114,54 @@ export function RSVPSection() {
         </div>
 
         <div className="flex items-center justify-center gap-1.5">
-          <SparkleStar className="h-3 w-3 text-[#FED766]" />
-          <p className="font-sub text-[0.72rem] font-bold uppercase tracking-[0.2em] text-[#4D88E6]">
-            {rsvp.eyebrow}
-          </p>
-          <SparkleStar className="h-3 w-3 text-[#FED766]" />
+          <div className="inline-flex items-center gap-1.5 rounded-full bg-[#EEF4FD] px-3.5 py-1 border border-[#D0E2FB] shadow-xs">
+            <SparkleStar className="h-3 w-3 text-[#E5B53A]" />
+            <span className="font-sub text-[0.72rem] font-bold uppercase tracking-[0.18em] text-[#1E40AF]">
+              {rsvp.eyebrow}
+            </span>
+            <SparkleStar className="h-3 w-3 text-[#E5B53A]" />
+          </div>
         </div>
 
-        <h2 className="mt-2 font-display text-[2.2rem] sm:text-[2.6rem] font-bold text-[#192739]">
+        <h2 className="mt-2 font-display text-[2.2rem] sm:text-[2.6rem] font-bold text-[#0F172A]">
           {rsvp.title}
         </h2>
 
-        <p className="mx-auto mt-2 font-body text-xs text-[#64748B] max-w-md">
+        <p className="mx-auto mt-2 font-body text-sm font-medium text-[#334155] max-w-md">
           {rsvp.subtitle}
         </p>
 
         <div className="my-5 flex items-center justify-center gap-3">
           <div className="h-[1px] w-10 bg-[#D4E3FA]" />
-          <PawPrint className="h-3.5 w-3.5" color="#F58A3C" />
+          <PawPrint className="h-3.5 w-3.5" color="#EA580C" />
           <div className="h-[1px] w-10 bg-[#D4E3FA]" />
         </div>
 
         {rsvp.isClosed ? (
-          <div className="mt-6 rounded-2xl bg-[#F8FAFD] p-6 text-center border border-[#E3EDFC]">
-            <h3 className="font-display text-lg font-bold text-[#192739]">
+          <div className="mt-6 rounded-2xl bg-[#F8FAFC] p-6 text-center border border-[#E2E8F0]">
+            <h3 className="font-display text-lg font-bold text-[#0F172A]">
               {rsvp.closedTitle}
             </h3>
-            <p className="mt-1 font-body text-xs text-[#64748B]">
+            <p className="mt-1 font-body text-xs font-medium text-[#334155]">
               {rsvp.closedNote}
             </p>
           </div>
         ) : submitted ? (
-          <div className="mt-6 rounded-2xl bg-[#F4F9FF] p-6 text-center border border-[#DCE8FA]">
-            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-[#48B87B] text-white">
+          <div className="mt-6 rounded-2xl bg-[#F0FDF4] p-6 text-center border border-[#BBF7D0]">
+            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-[#16A34A] text-white shadow-xs">
               <CheckCircle2 size={24} />
             </div>
 
-            <h3 className="mt-3 font-display text-xl font-bold text-[#192739]">
+            <h3 className="mt-3 font-display text-xl font-bold text-[#0F172A]">
               RSVP Received
             </h3>
 
-            <p className="mt-1 font-body text-xs text-[#64748B]">
+            <p className="mt-1 font-body text-sm font-medium text-[#334155]">
               {rsvp.responseNote}
             </p>
 
             <button
-              className="mt-5 text-xs font-sub font-bold text-[#4D88E6] hover:underline cursor-pointer"
+              className="mt-5 text-xs font-sub font-bold text-[#1E40AF] hover:underline cursor-pointer"
               type="button"
               onClick={() => setSubmitted(false)}
             >
@@ -169,11 +171,11 @@ export function RSVPSection() {
         ) : (
           <form className="mt-6 space-y-4 text-left" onSubmit={submit}>
             <div>
-              <label className="block font-sub text-xs font-bold uppercase tracking-wider text-[#192739]">
+              <label className="block font-sub text-xs font-extrabold uppercase tracking-wider text-[#0F172A]">
                 Your Full Name *
               </label>
               <input
-                className="mt-1 w-full rounded-xl border border-[#DCE8FA] bg-[#FAFBFD] px-4 py-3 font-body text-sm text-[#192739] outline-none transition-all placeholder:text-[#94A3B8] focus:border-[#4D88E6] focus:bg-white"
+                className="mt-1 w-full rounded-xl border border-[#CBD5E1] bg-[#F8FAFC] px-4 py-3 font-body text-sm font-semibold text-[#0F172A] outline-none transition-all placeholder:text-[#94A3B8] focus:border-[#2563EB] focus:bg-white"
                 required
                 name="name"
                 autoComplete="name"
@@ -182,11 +184,11 @@ export function RSVPSection() {
             </div>
 
             <div>
-              <label className="block font-sub text-xs font-bold uppercase tracking-wider text-[#192739]">
+              <label className="block font-sub text-xs font-extrabold uppercase tracking-wider text-[#0F172A]">
                 Will you attend? *
               </label>
               <select
-                className="mt-1 w-full rounded-xl border border-[#DCE8FA] bg-[#FAFBFD] px-4 py-3 font-body text-sm text-[#192739] outline-none transition-all focus:border-[#4D88E6] focus:bg-white cursor-pointer"
+                className="mt-1 w-full rounded-xl border border-[#CBD5E1] bg-[#F8FAFC] px-4 py-3 font-body text-sm font-semibold text-[#0F172A] outline-none transition-all focus:border-[#2563EB] focus:bg-white cursor-pointer"
                 required
                 name="attendance"
                 defaultValue="attending"
@@ -198,11 +200,11 @@ export function RSVPSection() {
 
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="block font-sub text-xs font-bold uppercase tracking-wider text-[#192739]">
+                <label className="block font-sub text-xs font-extrabold uppercase tracking-wider text-[#0F172A]">
                   Adults
                 </label>
                 <input
-                  className="mt-1 w-full rounded-xl border border-[#DCE8FA] bg-[#FAFBFD] px-4 py-3 font-body text-sm text-[#192739] outline-none transition-all focus:border-[#4D88E6] focus:bg-white"
+                  className="mt-1 w-full rounded-xl border border-[#CBD5E1] bg-[#F8FAFC] px-4 py-3 font-body text-sm font-semibold text-[#0F172A] outline-none transition-all focus:border-[#2563EB] focus:bg-white"
                   type="number"
                   min="1"
                   max="8"
@@ -212,11 +214,11 @@ export function RSVPSection() {
                 />
               </div>
               <div>
-                <label className="block font-sub text-xs font-bold uppercase tracking-wider text-[#192739]">
+                <label className="block font-sub text-xs font-extrabold uppercase tracking-wider text-[#0F172A]">
                   Children
                 </label>
                 <input
-                  className="mt-1 w-full rounded-xl border border-[#DCE8FA] bg-[#FAFBFD] px-4 py-3 font-body text-sm text-[#192739] outline-none transition-all focus:border-[#4D88E6] focus:bg-white"
+                  className="mt-1 w-full rounded-xl border border-[#CBD5E1] bg-[#F8FAFC] px-4 py-3 font-body text-sm font-semibold text-[#0F172A] outline-none transition-all focus:border-[#2563EB] focus:bg-white"
                   type="number"
                   min="0"
                   max="8"
@@ -227,11 +229,11 @@ export function RSVPSection() {
             </div>
 
             <div>
-              <label className="block font-sub text-xs font-bold uppercase tracking-wider text-[#192739]">
+              <label className="block font-sub text-xs font-extrabold uppercase tracking-wider text-[#0F172A]">
                 High Chair / Booster Needed?
               </label>
               <select
-                className="mt-1 w-full rounded-xl border border-[#DCE8FA] bg-[#FAFBFD] px-4 py-3 font-body text-sm text-[#192739] outline-none transition-all focus:border-[#4D88E6] focus:bg-white cursor-pointer"
+                className="mt-1 w-full rounded-xl border border-[#CBD5E1] bg-[#F8FAFC] px-4 py-3 font-body text-sm font-semibold text-[#0F172A] outline-none transition-all focus:border-[#2563EB] focus:bg-white cursor-pointer"
                 name="highChair"
                 defaultValue="no"
               >
@@ -242,11 +244,11 @@ export function RSVPSection() {
             </div>
 
             <div>
-              <label className="block font-sub text-xs font-bold uppercase tracking-wider text-[#192739]">
+              <label className="block font-sub text-xs font-extrabold uppercase tracking-wider text-[#0F172A]">
                 Note or Blessing for Baby {baby.nickname}
               </label>
               <textarea
-                className="mt-1 w-full rounded-xl border border-[#DCE8FA] bg-[#FAFBFD] px-4 py-3 font-body text-sm text-[#192739] outline-none transition-all placeholder:text-[#94A3B8] focus:border-[#4D88E6] focus:bg-white"
+                className="mt-1 w-full rounded-xl border border-[#CBD5E1] bg-[#F8FAFC] px-4 py-3 font-body text-sm font-medium text-[#0F172A] outline-none transition-all placeholder:text-[#94A3B8] focus:border-[#2563EB] focus:bg-white"
                 name="message"
                 rows={3}
                 placeholder="Share your wishes or dietary notes"
@@ -255,7 +257,7 @@ export function RSVPSection() {
 
             <div className="pt-2">
               <button
-                className="bingo-button w-full py-3.5 text-sm cursor-pointer"
+                className="bingo-button w-full py-3.5 text-sm cursor-pointer shadow-md"
                 disabled={isSubmitting}
                 type="submit"
               >
@@ -265,7 +267,7 @@ export function RSVPSection() {
             </div>
 
             {errorMessage && (
-              <p className="text-center font-body text-xs text-[#F58A3C]">
+              <p className="text-center font-body text-xs font-bold text-[#DC2626]">
                 {errorMessage}
               </p>
             )}

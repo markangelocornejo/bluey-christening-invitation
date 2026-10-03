@@ -18,20 +18,22 @@ export function GallerySection() {
         transition={{ duration: 0.7 }}
       >
         <div className="flex items-center justify-center gap-1.5">
-          <SparkleStar className="h-3 w-3 text-[#FED766]" />
-          <p className="font-sub text-[0.72rem] font-bold uppercase tracking-[0.2em] text-[#4D88E6]">
-            Memory Album
-          </p>
-          <SparkleStar className="h-3 w-3 text-[#FED766]" />
+          <div className="inline-flex items-center gap-1.5 rounded-full bg-[#EEF4FD] px-3.5 py-1 border border-[#D0E2FB] shadow-xs">
+            <SparkleStar className="h-3 w-3 text-[#E5B53A]" />
+            <span className="font-sub text-[0.72rem] font-bold uppercase tracking-[0.18em] text-[#1E40AF]">
+              Memory Album
+            </span>
+            <SparkleStar className="h-3 w-3 text-[#E5B53A]" />
+          </div>
         </div>
 
-        <h2 className="mt-2 font-display text-[2.2rem] sm:text-[2.8rem] font-bold text-[#192739]">
+        <h2 className="mt-2 font-display text-[2.2rem] sm:text-[2.8rem] font-bold text-[#0F172A]">
           Little Moments of Joy
         </h2>
 
         <div className="my-4 flex items-center justify-center gap-3">
           <div className="h-[1px] w-10 bg-[#D4E3FA]" />
-          <PawPrint className="h-3.5 w-3.5" color="#4D88E6" />
+          <PawPrint className="h-3.5 w-3.5" color="#2563EB" />
           <div className="h-[1px] w-10 bg-[#D4E3FA]" />
         </div>
 
@@ -40,7 +42,7 @@ export function GallerySection() {
           {gallery.map((item, index) => (
             <div
               key={item.tag}
-              className="group cursor-pointer overflow-hidden rounded-2xl bg-white p-3 border border-[#DCE8FA] shadow-xs hover:border-[#4D88E6] transition-all text-left"
+              className="group cursor-pointer overflow-hidden rounded-2xl bg-white p-3 border border-[#CBD5E1] shadow-xs hover:border-[#2563EB] transition-all text-left"
               onClick={() => setSelectedPhoto(index)}
             >
               <div className="aspect-square w-full overflow-hidden rounded-xl bg-[#F7FAFE]">
@@ -52,10 +54,10 @@ export function GallerySection() {
               </div>
 
               <div className="mt-3 px-1">
-                <span className="font-display text-xs font-bold text-[#192739]">
+                <span className="font-display text-sm font-bold text-[#0F172A]">
                   {item.tag}
                 </span>
-                <p className="font-body text-xs text-[#64748B] mt-0.5 line-clamp-1">
+                <p className="font-body text-xs font-medium text-[#475569] mt-0.5 line-clamp-1">
                   {item.caption}
                 </p>
               </div>

@@ -37,14 +37,16 @@ export function EventDetails() {
         transition={{ duration: 0.7 }}
       >
         <div className="flex items-center justify-center gap-1.5">
-          <SparkleStar className="h-3 w-3 text-[#FED766]" />
-          <p className="font-sub text-[0.72rem] font-bold uppercase tracking-[0.2em] text-[#4D88E6]">
-            Where &amp; When
-          </p>
-          <SparkleStar className="h-3 w-3 text-[#FED766]" />
+          <div className="inline-flex items-center gap-1.5 rounded-full bg-[#EEF4FD] px-3.5 py-1 border border-[#D0E2FB] shadow-xs">
+            <SparkleStar className="h-3 w-3 text-[#E5B53A]" />
+            <span className="font-sub text-[0.72rem] font-bold uppercase tracking-[0.18em] text-[#1E40AF]">
+              Where &amp; When
+            </span>
+            <SparkleStar className="h-3 w-3 text-[#E5B53A]" />
+          </div>
         </div>
 
-        <h2 className="mt-2 font-display text-[2.2rem] sm:text-[2.8rem] font-bold text-[#192739]">
+        <h2 className="mt-2 font-display text-[2.2rem] sm:text-[2.8rem] font-bold text-[#0F172A]">
           Ceremony &amp; Reception
         </h2>
 
@@ -71,21 +73,21 @@ export function EventDetails() {
                   {loc.illustration}
                 </div>
 
-                <h3 className="mt-3 font-display text-[1.4rem] font-bold text-[#192739]">
+                <h3 className="mt-3 font-display text-[1.45rem] font-bold text-[#0F172A]">
                   {loc.venue}
                 </h3>
 
-                <div className="mt-2 flex items-center gap-2 font-sub text-xs font-bold text-[#F58A3C]">
+                <div className="mt-2 flex items-center gap-2 font-sub text-xs font-bold text-[#C2410C]">
                   <Clock size={14} />
                   <span>{loc.time}</span>
                 </div>
 
-                <div className="mt-3 flex items-start gap-2 font-body text-sm text-[#64748B]">
-                  <MapPin size={16} className="shrink-0 text-[#8297B3] mt-0.5" />
+                <div className="mt-3 flex items-start gap-2 font-body text-sm font-medium text-[#334155]">
+                  <MapPin size={16} className="shrink-0 text-[#2563EB] mt-0.5" />
                   <span>{loc.address}</span>
                 </div>
 
-                <p className="mt-3 font-body text-xs text-[#8297B3] border-t border-[#F0F4FA] pt-3 leading-relaxed">
+                <p className="mt-3 font-body text-xs font-medium text-[#475569] border-t border-[#F0F4FA] pt-3 leading-relaxed">
                   {loc.note}
                 </p>
               </div>

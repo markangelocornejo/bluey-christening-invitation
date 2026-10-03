@@ -60,31 +60,33 @@ export function ClosingSection() {
         </div>
 
         <div className="flex items-center justify-center gap-1.5">
-          <SparkleStar className="h-3 w-3 text-[#FED766]" />
-          <p className="font-sub text-[0.72rem] font-bold uppercase tracking-[0.2em] text-[#4D88E6]">
-            {closing.eyebrow}
-          </p>
-          <SparkleStar className="h-3 w-3 text-[#FED766]" />
+          <div className="inline-flex items-center gap-1.5 rounded-full bg-[#EEF4FD] px-3.5 py-1 border border-[#D0E2FB] shadow-xs">
+            <SparkleStar className="h-3 w-3 text-[#E5B53A]" />
+            <span className="font-sub text-[0.72rem] font-bold uppercase tracking-[0.18em] text-[#1E40AF]">
+              {closing.eyebrow}
+            </span>
+            <SparkleStar className="h-3 w-3 text-[#E5B53A]" />
+          </div>
         </div>
 
-        <p className="mt-3 font-body text-sm leading-relaxed text-[#64748B]">
+        <p className="mt-3 font-body text-base font-medium leading-relaxed text-[#334155]">
           {closing.message}
         </p>
 
         <div className="my-4 flex items-center justify-center gap-3">
           <div className="h-[1px] w-10 bg-[#D4E3FA]" />
-          <PawPrint className="h-3.5 w-3.5" color="#4D88E6" />
+          <PawPrint className="h-3.5 w-3.5" color="#2563EB" />
           <div className="h-[1px] w-10 bg-[#D4E3FA]" />
         </div>
 
-        <strong className="block font-hand text-3xl font-bold text-[#F58A3C]">
+        <strong className="block font-hand text-3xl font-bold text-[#EA580C]">
           {closing.signature}
         </strong>
 
         {/* Back to Top */}
         <div className="mt-8">
           <button
-            className="inline-flex items-center gap-1.5 rounded-full border border-[#DCE8FA] bg-white px-5 py-2.5 font-sub text-xs font-bold text-[#192739] hover:bg-[#F7FAFE] hover:border-[#4D88E6]/50 transition-all shadow-xs cursor-pointer"
+            className="inline-flex items-center gap-1.5 rounded-full border border-[#CBD5E1] bg-white px-5 py-2.5 font-sub text-xs font-bold text-[#0F172A] hover:bg-[#F8FAFC] hover:border-[#1E40AF]/50 transition-all shadow-xs cursor-pointer"
             type="button"
             onClick={scrollToTop}
           >
@@ -93,7 +95,7 @@ export function ClosingSection() {
           </button>
         </div>
 
-        <p className="mt-8 font-sub text-[0.7rem] text-[#94A3B8]">
+        <p className="mt-8 font-sub text-xs font-semibold text-[#64748B]">
           Holy Christening of {baby.fullName}
         </p>
       </div>

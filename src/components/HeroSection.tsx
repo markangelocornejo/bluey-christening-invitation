@@ -147,34 +147,36 @@ export function HeroSection() {
             <PartyBunting className="w-full h-8 sm:h-10 opacity-90" />
           </div>
 
-          {/* Eyebrow with Sparkles & Paw */}
+          {/* Eyebrow with Sparkles */}
           <div className="mt-3 flex items-center justify-center gap-1.5">
-            <SparkleStar className="h-3 w-3 text-[#FED766]" />
-            <p className="font-sub text-[0.72rem] font-bold uppercase tracking-[0.2em] text-[#4D88E6]">
-              Holy Baptism &amp; Dedication
-            </p>
-            <SparkleStar className="h-3 w-3 text-[#FED766]" />
+            <div className="inline-flex items-center gap-1.5 rounded-full bg-[#EEF4FD] px-3.5 py-1 border border-[#D0E2FB] shadow-xs">
+              <SparkleStar className="h-3 w-3 text-[#E5B53A]" />
+              <span className="font-sub text-[0.72rem] font-bold uppercase tracking-[0.18em] text-[#1E40AF]">
+                Holy Baptism &amp; Dedication
+              </span>
+              <SparkleStar className="h-3 w-3 text-[#E5B53A]" />
+            </div>
           </div>
 
           {/* Child Name */}
-          <h1 className="mt-2.5 font-display text-[2.6rem] font-bold leading-tight text-[#192739] sm:text-[3.2rem]">
+          <h1 className="mt-3 font-display text-[2.6rem] font-bold leading-tight text-[#0F172A] sm:text-[3.2rem]">
             {baby.fullName}
           </h1>
 
           {/* Parents */}
-          <p className="mt-1 font-body text-sm font-medium text-[#64748B]">
-            Beloved son of <strong className="font-semibold text-[#192739]">{baby.parents.display}</strong>
+          <p className="mt-1 font-body text-sm font-semibold text-[#334155]">
+            Beloved son of <strong className="font-bold text-[#0F172A]">{baby.parents.display}</strong>
           </p>
 
           {/* Hairline divider with subtle paw prints */}
           <div className="my-6 flex items-center justify-center gap-3">
             <div className="h-[1px] w-12 bg-[#D4E3FA]" />
-            <PawPrint className="h-4 w-4" color="#4D88E6" />
+            <PawPrint className="h-4 w-4" color="#2563EB" />
             <div className="h-[1px] w-12 bg-[#D4E3FA]" />
           </div>
 
           {/* Authentic Bluey Family Character Illustration */}
-          <div className="mx-auto max-w-sm overflow-hidden rounded-2xl border border-[#E2EBF8] bg-[#F7FAFE] shadow-inner">
+          <div className="mx-auto max-w-sm overflow-hidden rounded-2xl border border-[#DCE8FA] bg-[#F7FAFE] shadow-inner">
             <img
               src="/images/bluey-family.jpg"
               alt="Bluey and the Heeler Family"
@@ -183,23 +185,23 @@ export function HeroSection() {
           </div>
 
           {/* Date, Time & Church Highlight */}
-          <div className="mt-6 rounded-2xl bg-[#F7FAFE] p-4 text-left sm:p-5 border border-[#E8F0FC]">
+          <div className="mt-6 rounded-2xl bg-[#F8FAFC] p-4 text-left sm:p-5 border border-[#E2E8F0]">
             <div className="grid gap-3 sm:grid-cols-2">
               <div className="flex items-start gap-2.5">
-                <Calendar className="h-4 w-4 shrink-0 text-[#4D88E6] mt-0.5" />
+                <Calendar className="h-4 w-4 shrink-0 text-[#2563EB] mt-0.5" />
                 <div>
-                  <p className="font-sub text-[0.65rem] font-bold uppercase tracking-wider text-[#8297B3]">Date &amp; Time</p>
-                  <p className="font-display text-sm font-bold text-[#192739]">{displayDate}</p>
-                  <p className="font-body text-xs text-[#64748B]">{displayTime}</p>
+                  <p className="font-sub text-[0.68rem] font-extrabold uppercase tracking-wider text-[#475569]">Date &amp; Time</p>
+                  <p className="font-display text-sm font-bold text-[#0F172A]">{displayDate}</p>
+                  <p className="font-body text-xs font-semibold text-[#334155]">{displayTime}</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-2.5">
-                <MapPin className="h-4 w-4 shrink-0 text-[#F58A3C] mt-0.5" />
+                <MapPin className="h-4 w-4 shrink-0 text-[#EA580C] mt-0.5" />
                 <div>
-                  <p className="font-sub text-[0.65rem] font-bold uppercase tracking-wider text-[#8297B3]">Ceremony Venue</p>
-                  <p className="font-display text-sm font-bold text-[#192739]">{event.ceremony.venue}</p>
-                  <p className="font-body text-xs text-[#64748B]">San Juan City</p>
+                  <p className="font-sub text-[0.68rem] font-extrabold uppercase tracking-wider text-[#475569]">Ceremony Venue</p>
+                  <p className="font-display text-sm font-bold text-[#0F172A]">{event.ceremony.venue}</p>
+                  <p className="font-body text-xs font-semibold text-[#334155]">San Juan City</p>
                 </div>
               </div>
             </div>
@@ -207,21 +209,21 @@ export function HeroSection() {
 
           {/* Live Countdown Pills */}
           <div className="mt-6 flex items-center justify-center gap-2 font-display">
-            <div className="rounded-xl bg-[#EEF4FD] px-3 py-2 text-center min-w-[3.5rem]">
-              <span className="block text-lg font-bold text-[#4D88E6] leading-none">{timeLeft.days}</span>
-              <span className="font-sub text-[0.6rem] font-bold uppercase text-[#8297B3]">Days</span>
+            <div className="rounded-xl bg-[#EEF4FD] px-3 py-2 text-center min-w-[3.5rem] border border-[#D0E2FB]">
+              <span className="block text-lg font-bold text-[#1E40AF] leading-none">{timeLeft.days}</span>
+              <span className="font-sub text-[0.62rem] font-bold uppercase text-[#475569]">Days</span>
             </div>
-            <div className="rounded-xl bg-[#FFF7EE] px-3 py-2 text-center min-w-[3.5rem]">
-              <span className="block text-lg font-bold text-[#F58A3C] leading-none">{timeLeft.hours}</span>
-              <span className="font-sub text-[0.6rem] font-bold uppercase text-[#8297B3]">Hours</span>
+            <div className="rounded-xl bg-[#FFF7EE] px-3 py-2 text-center min-w-[3.5rem] border border-[#FED7AA]">
+              <span className="block text-lg font-bold text-[#C2410C] leading-none">{timeLeft.hours}</span>
+              <span className="font-sub text-[0.62rem] font-bold uppercase text-[#475569]">Hours</span>
             </div>
-            <div className="rounded-xl bg-[#FDF9EE] px-3 py-2 text-center min-w-[3.5rem]">
-              <span className="block text-lg font-bold text-[#E5B53A] leading-none">{timeLeft.minutes}</span>
-              <span className="font-sub text-[0.6rem] font-bold uppercase text-[#8297B3]">Mins</span>
+            <div className="rounded-xl bg-[#FEF9C3] px-3 py-2 text-center min-w-[3.5rem] border border-[#FDE047]">
+              <span className="block text-lg font-bold text-[#A16207] leading-none">{timeLeft.minutes}</span>
+              <span className="font-sub text-[0.62rem] font-bold uppercase text-[#475569]">Mins</span>
             </div>
-            <div className="rounded-xl bg-[#F0FBF5] px-3 py-2 text-center min-w-[3.5rem]">
-              <span className="block text-lg font-bold text-[#48B87B] leading-none">{timeLeft.seconds}</span>
-              <span className="font-sub text-[0.6rem] font-bold uppercase text-[#8297B3]">Secs</span>
+            <div className="rounded-xl bg-[#F0FDF4] px-3 py-2 text-center min-w-[3.5rem] border border-[#BBF7D0]">
+              <span className="block text-lg font-bold text-[#15803D] leading-none">{timeLeft.seconds}</span>
+              <span className="font-sub text-[0.62rem] font-bold uppercase text-[#475569]">Secs</span>
             </div>
           </div>
 
@@ -235,12 +237,12 @@ export function HeroSection() {
               <span>Confirm Attendance</span>
             </button>
             <a
-              className="inline-flex items-center gap-1.5 rounded-full border border-[#DCE8FA] bg-white px-5 py-3 font-display text-[0.88rem] font-bold text-[#192739] hover:bg-[#F7FAFE] transition-colors"
+              className="inline-flex items-center gap-1.5 rounded-full border border-[#CBD5E1] bg-white px-5 py-3 font-display text-[0.88rem] font-bold text-[#0F172A] hover:bg-[#F8FAFC] transition-colors shadow-xs"
               href={getGoogleCalendarUrl()}
               target="_blank"
               rel="noreferrer"
             >
-              <Calendar size={15} className="text-[#4D88E6]" />
+              <Calendar size={15} className="text-[#2563EB]" />
               <span>Add to Calendar</span>
             </a>
           </div>
@@ -248,7 +250,7 @@ export function HeroSection() {
 
         {/* Subtle scroll down indicator */}
         <button
-          className="mt-6 inline-flex items-center gap-1.5 font-sub text-xs font-bold uppercase tracking-wider text-[#8297B3] hover:text-[#4D88E6] transition-colors cursor-pointer"
+          className="mt-6 inline-flex items-center gap-1.5 font-sub text-xs font-bold uppercase tracking-wider text-[#475569] hover:text-[#1E40AF] transition-colors cursor-pointer"
           type="button"
           onClick={() => scrollToSection('event-details')}
         >
