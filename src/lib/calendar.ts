@@ -11,10 +11,9 @@ export function getGoogleCalendarUrl(): string {
   )
   const location = encodeURIComponent(`${event.ceremony.venue}, ${event.ceremony.address}`)
 
-  // Start & End in YYYYMMDDTHHMMSSZ format
-  // 2026-11-15T10:00:00+08:00
-  const start = '20261115T020000Z'
-  const end = '20261115T080000Z'
+  // Saturday, January 16, 2027 from 9:00 AM to 5:00 PM (GMT+8)
+  const start = '20270116T010000Z'
+  const end = '20270116T090000Z'
 
   return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${start}/${end}&details=${details}&location=${location}`
 }
@@ -31,8 +30,8 @@ export function downloadIcsFile() {
     'SUMMARY:' + `${baby.fullName}'s Christening & Dedication`,
     'DESCRIPTION:' + `Join us in celebrating ${baby.fullName}'s Christening! Ceremony at ${event.ceremony.venue} followed by reception at ${event.reception.venue}.`,
     'LOCATION:' + `${event.ceremony.venue}, ${event.ceremony.address}`,
-    'DTSTART:20261115T020000Z',
-    'DTEND:20261115T080000Z',
+    'DTSTART:20270116T010000Z',
+    'DTEND:20270116T090000Z',
     'STATUS:CONFIRMED',
     'END:VEVENT',
     'END:VCALENDAR',

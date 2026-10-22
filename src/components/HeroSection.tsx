@@ -201,7 +201,7 @@ export function HeroSection() {
                 <div>
                   <p className="font-sub text-[0.68rem] font-extrabold uppercase tracking-wider text-[#475569]">Ceremony Venue</p>
                   <p className="font-display text-sm font-bold text-[#0F172A]">{event.ceremony.venue}</p>
-                  <p className="font-body text-xs font-semibold text-[#334155]">San Juan City</p>
+                  <p className="font-body text-xs font-semibold text-[#334155]">{event.ceremony.city}</p>
                 </div>
               </div>
             </div>
