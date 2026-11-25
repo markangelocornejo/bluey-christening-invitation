@@ -38,7 +38,7 @@ export function GallerySection() {
         </div>
 
         {/* Gallery Grid */}
-        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid gap-4 sm:gap-5 grid-cols-2 sm:grid-cols-3 lg:grid-cols-5">
           {gallery.map((item, index) => (
             <div
               key={item.tag}
@@ -77,7 +77,7 @@ export function GallerySection() {
             onClick={() => setSelectedPhoto(null)}
           >
             <div
-              className="relative max-w-sm w-full rounded-2xl bg-white p-5 shadow-xl text-center"
+              className="relative max-w-lg w-full rounded-2xl bg-white p-5 shadow-xl text-center"
               onClick={(e) => e.stopPropagation()}
             >
               <button
@@ -88,11 +88,11 @@ export function GallerySection() {
                 <X size={16} />
               </button>
 
-              <div className="aspect-square w-full overflow-hidden rounded-xl">
+              <div className="max-h-[65vh] w-full overflow-hidden rounded-xl bg-[#F8FAFC] flex items-center justify-center p-1">
                 <img
                   src={gallery[selectedPhoto].src}
                   alt={gallery[selectedPhoto].tag}
-                  className="h-full w-full object-cover"
+                  className="max-h-[60vh] w-auto max-w-full rounded-lg object-contain"
                 />
               </div>
 

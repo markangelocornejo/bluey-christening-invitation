@@ -175,12 +175,12 @@ export function HeroSection() {
             <div className="h-[1px] w-12 bg-[#D4E3FA]" />
           </div>
 
-          {/* Authentic Bluey Family Character Illustration */}
+          {/* Authentic Baby Abram Feature Photo */}
           <div className="mx-auto max-w-sm overflow-hidden rounded-2xl border border-[#DCE8FA] bg-[#F7FAFE] shadow-inner">
             <img
-              src="/images/bluey-family.jpg"
-              alt="Bluey and the Heeler Family"
-              className="h-48 w-full object-cover sm:h-56"
+              src={invitationData.heroImage}
+              alt={baby.fullName}
+              className="h-52 w-full object-cover object-center sm:h-60"
             />
           </div>
 

@@ -19,7 +19,7 @@ export const invitationData = {
     subtitle: 'Holy Baptism & Celebration',
     tagline: 'A joyful day of love, blessings, and lifelong memories.',
   },
-  heroImage: '/images/bluey.jpg',
+  heroImage: '/images/img_1023.jpg',
   spiritual: {
     eyebrow: 'A Sacred Milestone',
     heading: 'Blessed in Faith & Grace',
@@ -86,24 +86,29 @@ export const invitationData = {
   ],
   gallery: [
     {
-      src: '/images/bluey.jpg',
-      caption: 'Pure joy and big smiles for the celebration',
-      tag: 'Joyful Heart',
+      src: '/images/img_1023.jpg',
+      caption: 'Peaceful moments and heavenly blessings',
+      tag: 'Peaceful Blessing',
     },
     {
-      src: '/images/bingo.jpg',
-      caption: 'Warm giggles and sweet puppy moments',
+      src: '/images/img_0234.jpg',
+      caption: 'Pure joy and big smiles for the celebration',
       tag: 'Sweet Smiles',
     },
     {
-      src: '/images/bluey-bingo-play.jpg',
-      caption: 'Playful adventures and sunny memories',
-      tag: 'Best Friends',
+      src: '/images/img_0708.jpg',
+      caption: 'Sunny outdoor walks and bright curiosity',
+      tag: 'Little Explorer',
     },
     {
-      src: '/images/bluey-family.jpg',
-      caption: 'Surrounded by the warmth of family love',
-      tag: 'Family Blessings',
+      src: '/images/img_1939.jpg',
+      caption: 'First winter wonders and cozy snow adventures',
+      tag: 'Winter Wonder',
+    },
+    {
+      src: '/images/img_2115.jpg',
+      caption: 'Playful adventures and everyday happiness',
+      tag: 'Playful Heart',
     },
   ],
   motif: {

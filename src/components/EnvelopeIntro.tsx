@@ -209,11 +209,18 @@ export function EnvelopeIntro({ onReveal, onComplete }: EnvelopeIntroProps) {
             animate={animatedState}
             initial="resting"
           >
-            <div className="w-[min(82vw,19rem)] rounded-2xl bg-white p-5 text-center shadow-xl border-2 border-[#DCE8FA]">
+            <div className="w-[min(82vw,19rem)] rounded-2xl bg-white p-4 sm:p-5 text-center shadow-xl border-2 border-[#DCE8FA]">
+              <div className="mx-auto mb-2.5 h-16 w-16 overflow-hidden rounded-full border-2 border-[#4D88E6]/40 shadow-sm">
+                <img
+                  src="/images/img_0234.jpg"
+                  alt={invitationData.baby.fullName}
+                  className="h-full w-full object-cover object-top"
+                />
+              </div>
               <p className="font-sub text-[0.7rem] font-bold uppercase tracking-wider text-[#1E40AF]">
                 Holy Baptism
               </p>
-              <h3 className="mt-1 font-display text-xl font-bold text-[#0F172A]">
+              <h3 className="mt-1 font-display text-lg sm:text-xl font-bold text-[#0F172A]">
                 {invitationData.baby.fullName}
               </h3>
               <p className="mt-1 font-body text-xs font-semibold text-[#475569]">
